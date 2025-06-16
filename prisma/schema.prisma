@@ -1,6 +1,7 @@
 
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["fullTextSearch"]
 
 }
 
@@ -18,14 +19,14 @@ model User{
   comment Comment[]
   created_at DateTime @default(now())
 }
-model Post{
-  id Int @id @default(autoincrement())
+model Post {
+  id Int @id @default(autoincrement()) 
   user User @relation(fields: [user_id],references: [id],onDelete: Cascade)
   comment Comment[]
   user_id Int
   title String
   description String
-  comment_count BigInt @default(0)
+  comment_count Int @default(0)
   created_at DateTime @default(now())
 }
 
@@ -37,5 +38,5 @@ model Comment{
   user_id Int
   comment String
   created_at DateTime @default(now())
-     
+
 }
